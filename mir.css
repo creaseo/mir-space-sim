@@ -1,0 +1,83 @@
+#container
+{
+  margin: auto;
+  padding: 1px;
+  width: 800px;
+  height: 800px;
+}
+
+.app
+{
+  margin: auto;
+  padding: 0px;
+}
+
+.title
+{
+  margin: auto;
+  padding: 10px;
+  border: 1px solid black;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: white;
+  background-color: rgb( 112, 128, 144 );
+}
+
+.mission
+{
+  margin: auto;
+  padding: 0px 0px 0px 0px;
+  border: 1px solid black;
+  display: flex;
+}
+
+.control
+{
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.mihr 
+{
+  margin: auto;
+  background-position: right;
+  background-size: contain;
+  border: 1px solid black;
+}
+
+#webgl-canvas 
+{
+   background-image: url( "https://i.ibb.co/tmkcJMr/space.jpg" );
+   background-repeat: no-repeat;
+   width: 600px;
+   height: 600px;
+}
+
+ul
+{
+    margin: 0px;
+    padding: 10px 5px 0px 0px;
+    list-style-type: none;
+}
+
+li
+{
+  padding: 5px 1px 10px 10px;
+}
+
+.red-font
+{
+  color: red;
+}
+
+.blue-font
+{
+  color: blue;
+}
+
+.green-font
+{
+  color: green;
+}

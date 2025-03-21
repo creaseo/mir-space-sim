@@ -1,0 +1,101 @@
+<html>
+<head>
+    <link rel="stylesheet" href="mir.css">
+    <script src="https://www.cs.unm.edu/~angel/WebGL/7E/Common/initShaders.js" defer></script>
+    <script src="https://www.cs.unm.edu/~angel/WebGL/7E/Common/MV.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/brent-munsell/graphics/models/mihrst.js" defer></script>
+    <script src="mir.js" defer></script>
+</head>
+<body>
+   <div id="container">
+     <div class="app">
+        <div class="title">Mihr Space Station: Mission Control</div>
+        <div class="mission">
+          <div class="control">
+            <ul>
+              <li>Simulate Gravity</li>
+              <li><input type="checkbox" id="gravity" checked></li>
+            </ul>
+            <ul>
+              <li>Scale</li>
+              <li><input type="number" id="scale" value="1.25" step="0.25"></li>
+              <li><span class="red-font">Rotate X (degree)</span></li>
+              <li><input type="number" id="xang" value="0" step="2"></li>
+              <li><span class="green-font">Rotate Y (degree)</span></li>
+              <li><input type="number" id="yang" value="0" step="2"></li>
+              <li><span class="blue-font">Translate Z</span></li>
+              <li><input type="range" id="ztrans" min="-1" max="1" step="0.01" value="0"></li>
+            </ul>
+          </div> <!-- end control -->
+          <div class="mihr">
+            <canvas id="webgl-canvas">
+            Oops, your browser doesn't support the HTML5 canvas!
+            </canvas>
+          </div> <!-- end mihr -->
+        </div> <!-- end mission -->
+     </div> <!-- end app -->
+  </div> <!-- end containter -->
+  
+  
+  <script id="vertex-shader" type="x-shader/x-vertex">
+  
+    attribute vec4 vertex;
+    uniform vec4 props; // [ xang, yang, zang, scale ]
+    
+    uniform mat4 View;
+    uniform float z_translation;
+
+    void main() {
+                        
+        float s_x = sin( props[0] );
+        float c_x = cos( props[0] );
+        
+        mat4 Rx = mat4( 1.0, 0.0, 0.0, 0.0,
+                        0.0, c_x, s_x, 0.0,
+                        0.0, -s_x, c_x, 0.0,
+                        0.0, 0.0, 0.0, 1.0 );
+    
+        float s_y = sin( props[1] );
+        float c_y = cos( props[1] );
+        
+        mat4 Ry = mat4( c_y, 0.0, -s_y, 0.0,
+                        0.0, 1.0, 0.0, 0.0,
+                        s_y, 0.0, c_y, 0.0,
+                        0.0, 0.0, 0.0, 1.0 );
+
+        float s_z = sin( props[2] );
+        float c_z = cos( props[2] );
+    
+        mat4 Rz = mat4( c_z, s_z, 0.0, 0.0,
+                        -s_z, c_z, 0.0, 0.0,
+                        0.0, 0.0, 1.0, 0.0,
+                        0.0, 0.0, 0.0, 1.0 );
+                   
+        mat4 S = mat4(  props[3], 0.0, 0.0, 0.0,
+                        0.0, props[3], 0.0, 0.0,
+                        0.0, 0.0, props[3], 0.0,
+                        0.0, 0.0, 0.0, 1.0 );
+                      
+        mat4 Tz = mat4( 1.0, 0.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0, 0.0,
+                        0.0, 0.0, 1.0, 0.0,
+                        0.0, 0.0, z_translation, 1.0 );
+                      
+        mat4 Model;
+        Model = S * Rx * Ry * Tz * Rz;
+        gl_Position = View * Model * vertex;
+  }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+  precision lowp float;
+  
+  uniform vec4 color; 
+  
+  void main() {
+      gl_FragColor = color;
+  }
+  
+</script>
+</body>
