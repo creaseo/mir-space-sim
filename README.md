@@ -1,10 +1,17 @@
-Hello, this is a little prject that I created to practice using Linear concepts (Matrices) to implement a simulation of an Mir Space Station in space
+Hello, this is a little prject that I created to practice using Linear concepts (Matrices) to implement a simulation of a propeller plane
 
-The space station is uniformly scaled using the value in the S input box (default is 1.25).
-- rotated about its z-axis to simulate gravity (default is checked).
-- rotated about its x-axis using the value in the X input box (default is 0 degrees).
-- rotated about its y-axis using the value in the Y input box (default is 0 degrees).
-- translated along its z-axis using the slider value (the default is 0, and the range is -1 to 1).
+To simulate flight dynamics the application includes buttons that control airplane (including its propeller) orientation. 
 
+- The green arrow buttons control yaw movements (rotation about the Y-axis).
+- The red arrow buttons control pitch movements (rotation about the X-axis).
+- The blue arrow buttons control roll movements (rotation about the Z-axis).
+- The reset button returns airplane to its default orientation (i.e., no yaw, pitch, or roll movements). 
 
-As before, the positive XYZ axes relative to the space station are also visualized to better understand the transformation, with the positive x-axis in red, the positive y-axis in green, and the positive z-axis in blue.
+In addition to the controls described above, the application also includes four different canvases to visualize airplane orientation.
+
+- One canvas draws the airplane in the XZ-plane to visualize only yaw movements. 
+- One canvas draws the airplane in the YZ-plane to visualize only pitch movements. 
+- One canvas draws the airplane in the XY-plane to visualize only roll movements.
+- One canvas draws the airplane in all three planes (XYZ) to visualize all three movements.
+
+Lastly, the positive x-axis in red, the positive y-axis in green, and the positive z-axis in blue are also drawn in each canvas to better understand airplane orientation.
